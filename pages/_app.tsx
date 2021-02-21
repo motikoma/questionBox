@@ -1,6 +1,6 @@
 import { AppProps } from "next/app";
-import "../styles/globals.css";
 import "../lib/firebase";
+import "../lib/authentication";
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   return <Component {...pageProps} />;

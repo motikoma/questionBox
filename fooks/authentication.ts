@@ -11,6 +11,18 @@ const userState = atom<User>({
   },
 });
 
+const createUserIfNotFound = async (user: User) => {
+  const userRef = firebase.firestore().collection('users').doc(user.uid);
+
+  // docが存在する場合は終了
+  const doc = await userRef.get();
+  if(doc.exists) return;
+
+  await userRef.set({
+    name: `${new Date().getTime()}`
+  })
+}
+
 const useAuthentication = () => {
   const [user, setUser] = useRecoilState(userState);
 
@@ -25,6 +37,7 @@ const useAuthentication = () => {
   firebase.auth().onAuthStateChanged( (firebaseUser) => {
     if (firebaseUser) {
       setUser({uid: firebaseUser.uid, isAnonymous: firebaseUser.isAnonymous})
+      createUserIfNotFound(firebaseUser);
     } else {
       setUser({
         uid: '',

@@ -5,7 +5,7 @@ import useAuthentication from "../fooks/authentication";
 const IndexPage = () => {
   const { user } = useAuthentication();
   return (
-    <Layout title="Home | Next.js + TypeScript Example">
+    <Layout title="Home">
       <h1>Hello Next.js 👋</h1>
       <p>{user?.uid || "未ログイン"}</p>
       <p>

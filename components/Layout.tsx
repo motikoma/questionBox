@@ -1,10 +1,14 @@
 import React from "react";
 import Head from "next/head";
 
-const Layout: React.FC = ({ children }) => (
+type LayoutProps = {
+  title?: string;
+};
+
+const Layout: React.FC<LayoutProps> = ({ children, title }) => (
   <div>
     <Head>
-      <title>質問箱</title>
+      <title>{title} - QuestionBox</title>
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>

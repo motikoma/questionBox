@@ -2,17 +2,17 @@ import {useEffect} from "react";
 import firebase from 'firebase/app'
 import {User} from "../interfaces/index";
 import {atom, useRecoilState} from "recoil";
-import { disconnect } from "process";
 
 const userState = atom<User>({
   key: 'user',
   default: {
     uid: '',
-    isAnonymous: false
+    isAnonymous: false,
+    name: ''
   },
 });
 
-const createUserIfNotFound = async (user: User) => {
+const createUserIfNotFound = async (user: firebase.User) => {
   const userRef = firebase.firestore().collection('users').doc(user.uid);
 
   // docが存在する場合は終了
@@ -37,12 +37,13 @@ const useAuthentication = () => {
 
   firebase.auth().onAuthStateChanged( (firebaseUser) => {
     if (firebaseUser) {
-      setUser({uid: firebaseUser.uid, isAnonymous: firebaseUser.isAnonymous})
+      setUser({uid: firebaseUser.uid, isAnonymous: firebaseUser.isAnonymous, name: ''})
       createUserIfNotFound(firebaseUser);
     } else {
       setUser({
         uid: '',
-        isAnonymous: false
+        isAnonymous: false,
+        name: ''
       });
     }
     // ...

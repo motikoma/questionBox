@@ -1,42 +1,33 @@
 import React from "react";
-import Link from "next/link";
 import Head from "next/head";
 
-type LayoutProps = {
-  title?: string;
-};
-
-const Layout: React.FC<LayoutProps> = ({
-  children,
-  title = "This is the default title",
-}) => (
+const Layout: React.FC = ({ children }) => (
   <div>
     <Head>
-      <title>{title}</title>
+      <title>質問箱</title>
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
-    <header>
-      <nav>
-        <Link href="/">
-          <a>Home</a>
-        </Link>{" "}
-        |{" "}
-        <Link href="/about">
-          <a>About</a>
-        </Link>{" "}
-        |{" "}
-        <Link href="/users">
-          <a>Users List</a>
-        </Link>{" "}
-        | <a href="/api/users">Users API</a>
+    <div>
+      <nav
+        className="navbar navbar-expand-lg navbar-light mb-3"
+        style={{ backgroundColor: "#e3f2fd" }}
+      >
+        <div className="container">
+          <div className="mr-auto">
+            <a className="navbar-brand" href="#">
+              Navbar
+            </a>
+          </div>
+          <form className="d-flex">
+            <button className="btn btn-outline-primary" type="submit">
+              Search
+            </button>
+          </form>
+        </div>
       </nav>
-    </header>
-    {children}
-    <footer>
-      <hr />
-      <span>I'm here to stay (Footer)</span>
-    </footer>
+      <div className="container">{children}</div>
+    </div>
   </div>
 );
 

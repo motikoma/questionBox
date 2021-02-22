@@ -2,6 +2,7 @@ import {useEffect} from "react";
 import firebase from 'firebase/app'
 import {User} from "../interfaces/index";
 import {atom, useRecoilState} from "recoil";
+import { disconnect } from "process";
 
 const userState = atom<User>({
   key: 'user',

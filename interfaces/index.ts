@@ -4,8 +4,18 @@
 //
 // import { User } from 'path/to/interfaces';
 
+import firebase from 'firebase/app'
+
 export type User = {
   uid: string
   isAnonymous: boolean
   name: string
+}
+export interface Question {
+  id: string
+  senderUid: string
+  receiverUid: string
+  body: string
+  isReplied: boolean
+  createdAt: firebase.firestore.Timestamp
 }

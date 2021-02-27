@@ -19,3 +19,11 @@ export interface Question {
   isReplied: boolean
   createdAt: firebase.firestore.Timestamp
 }
+
+export interface Answer {
+  id: string
+  uid: string
+  questionId: string
+  body: string
+  createdAt: firebase.firestore.Timestamp
+}

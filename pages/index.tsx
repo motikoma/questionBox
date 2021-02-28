@@ -6,11 +6,16 @@ const IndexPage = () => {
   const { user } = useAuthentication();
   return (
     <Layout title="Home">
-      <h1>Hello Next.js 👋</h1>
+      <h1>QuestionBox</h1>
       <p>{user?.uid || "未ログイン"}</p>
       <p>
-        <Link href="/about">
-          <a>About</a>
+        <Link href={`/users/${user?.uid}`}>
+          <a>自分のQuestionBoxのURLだよ</a>
+        </Link>
+      </p>
+      <p>
+        <Link href={`/question/${user?.uid}`}>
+          <a>受け取った質問リストだよ</a>
         </Link>
       </p>
     </Layout>

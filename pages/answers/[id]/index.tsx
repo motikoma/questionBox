@@ -52,7 +52,7 @@ const AnswersShow = (props: Props) => {
 export default AnswersShow;
 
 // getServerSideProps の引数は context
-export async function getServerSideProps({ query }) {
+export async function getServerSideProps({ query }: any) {
   const res = await fetch(process.env.API_URL + `/api/answers/${query.id}`);
   const json = await res.json();
   return { props: json };

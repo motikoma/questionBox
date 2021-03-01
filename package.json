@@ -5,10 +5,12 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "type-check": "tsc"
+    "type-check": "tsc",
+    "now-build": "cp canvas_lib64/*so.1 node_modules/canvas/build/Release/ && yarn build"
   },
   "dependencies": {
     "bootstrap": "^5.0.0-beta2",
+    "canvas": "^2.6.1",
     "dayjs": "^1.10.4",
     "firebase": "^8.2.9",
     "firebase-admin": "^9.5.0",

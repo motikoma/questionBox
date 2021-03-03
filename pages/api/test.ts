@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import '../../../../lib/firebase_admin'
+import '../../lib/firebase_admin'
 import { firestore } from 'firebase-admin'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {

@@ -32,3 +32,6 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# firebase-admin：機密情報なので絶対にコミットしてはいけない
+serviceAccoutkey.json

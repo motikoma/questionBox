@@ -5,12 +5,35 @@ type LayoutProps = {
   title?: string;
 };
 
-const Layout: React.FC<LayoutProps> = ({ children, title }) => (
+const Layout: React.FC<LayoutProps> = ({
+  children,
+  title = "トップページ",
+}) => (
   <div>
     <Head>
       <title>{title} - QuestionBox</title>
       <meta charSet="utf-8" />
+      <meta
+        name="description"
+        key="description"
+        content="質問と回答を行えるサービスです。"
+      />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      <meta
+        property="og:title"
+        key="ogTitle"
+        content={`${title} - QuestionBox`}
+      />
+      <meta
+        property="og:site_name"
+        key="ogSiteName"
+        content={`${title} - QuestionBox`}
+      />
+      <meta
+        property="og:description"
+        key="ogDescription"
+        content="質問と回答を行えるサービスです。"
+      />
     </Head>
     <div>
       <nav

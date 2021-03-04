@@ -15,6 +15,6 @@ import { NextApiResponse } from "next";
 //   res.status(200).json(data);
 // };
 
-export default function handler(res: NextApiResponse) {
-  res.status(200).json({ name: "John Doe" });
+export default (req, res) => {
+  res.status(200).json({ text: 'Hello' })
 }

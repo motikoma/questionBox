@@ -54,7 +54,6 @@ export default AnswersShow;
 // getServerSideProps の引数は context
 export async function getServerSideProps({ query }: any) {
   console.log(process.env.API_URL);
-  console.log(process.env.GCP_CREDENTIAL);
   const res = await fetch(process.env.API_URL + `/api/answers/${query.id}`);
   const json = await res.json();
   return { props: json };

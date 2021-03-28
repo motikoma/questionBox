@@ -2,19 +2,11 @@ import Head from "next/head";
 import Layout from "../../../components/Layout";
 import { Answer, Question } from "../../../interfaces/index";
 import TwitterShareButton from "../../../components/TwitterShareButton";
+import getDescription from "../../../lib/getDescription";
 
 type Props = {
   answer: Answer;
   question: Question;
-};
-
-const getDescription = (answer: Answer) => {
-  const body = answer.body.trim().replace(/[ \r\n]/g, "");
-  if (body.length > 140) {
-    return body;
-  } else {
-    return body.substring(0, 140) + "...";
-  }
 };
 
 const AnswersShow = (props: Props) => {

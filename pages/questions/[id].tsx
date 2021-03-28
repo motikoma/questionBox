@@ -1,11 +1,13 @@
 import { useEffect, useState, FormEvent } from "react";
 import { useRouter } from "next/router";
+import Head from "next/head";
 import firebase from "firebase/app";
 import Layout from "../../components/Layout";
 import { Question } from "../../interfaces/index";
 import { Answer } from "../../interfaces/index";
 import useAuthentication from "../../fooks/authentication";
 import TwitterShareButton from "../../components/TwitterShareButton";
+import getDescription from "../../lib/getDescription";
 
 type Query = {
   id: string;
@@ -17,6 +19,8 @@ export default function QuestionsShow() {
   const { user } = useAuthentication();
   const [isSending, setIsSending] = useState<boolean>();
   const [answer, setAnswer] = useState<Answer | null>(null);
+  const [description, setDescription] = useState<string>();
+  const [ogpImageUrl, setOgpImageUrl] = useState<string>();
   const [body, setBody] = useState<string>("");
   const [question, setQuestion] = useState<Question | null>(null);
 
@@ -93,11 +97,28 @@ export default function QuestionsShow() {
       return;
     }
 
+    if (answer) {
+      setDescription(getDescription(answer));
+      setOgpImageUrl(
+        `${process.env.NEXT_PUBLIC_WEB_URL}/api/answers/${answer.id}/ogp`
+      );
+    }
+
     loadData();
-  }, [query.id, user]);
+  }, [query.id, user, answer]);
 
   return (
     <Layout>
+      <Head>
+        <meta name="description" key="description" content={description} />
+        <meta property="og:image" key="ogImage" content={ogpImageUrl} />
+        <meta
+          name="twitter:card"
+          key="twitterCard"
+          content="summary_large_image"
+        />
+        <meta name="twitter:image" key="twitterImage" content={ogpImageUrl} />
+      </Head>
       <div className="row justify-content-center">
         <div className="col-12 col-md-6">
           {question && (
@@ -137,9 +158,14 @@ export default function QuestionsShow() {
                     <div className="card">
                       <div className="card-body text-left">{answer.body}</div>
                     </div>
-                    <div className="my-3 d-flex justify-content-center">
-                      <TwitterShareButton url={answer.id} text={answer.body} />
-                    </div>
+                    {ogpImageUrl && (
+                      <div className="my-3 d-flex justify-content-center">
+                        <TwitterShareButton
+                          url={ogpImageUrl}
+                          text={answer.body}
+                        />
+                      </div>
+                    )}
                   </>
                 )}
               </section>

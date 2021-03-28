@@ -5,6 +5,7 @@ import Layout from "../../components/Layout";
 import { Question } from "../../interfaces/index";
 import { Answer } from "../../interfaces/index";
 import useAuthentication from "../../fooks/authentication";
+import TwitterShareButton from "../../components/TwitterShareButton";
 
 type Query = {
   id: string;
@@ -132,9 +133,14 @@ export default function QuestionsShow() {
                     </div>
                   </form>
                 ) : (
-                  <div className="card">
-                    <div className="card-body text-left">{answer.body}</div>
-                  </div>
+                  <>
+                    <div className="card">
+                      <div className="card-body text-left">{answer.body}</div>
+                    </div>
+                    <div className="my-3 d-flex justify-content-center">
+                      <TwitterShareButton url={answer.id} text={answer.body} />
+                    </div>
+                  </>
                 )}
               </section>
             </>

@@ -19,8 +19,6 @@ export default function QuestionsShow() {
   const [body, setBody] = useState<string>("");
   const [question, setQuestion] = useState<Question | null>(null);
 
-  console.log(process.env.API_URL);
-
   async function loadData() {
     // --- 質問の読み込み ---
     if (query.id === undefined) {

@@ -3,6 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 
 const ogpImageUrl = `${process.env.NEXT_PUBLIC_WEB_URL}/images/card.png`;
+console.log(ogpImageUrl);
 
 type LayoutProps = {
   title?: string;
@@ -46,9 +47,8 @@ const Layout: React.FC<LayoutProps> = ({
       />
 
       {/* twitter OGPの設定 */}
-      <meta property="og:image" key="ogImage" content={ogpImageUrl} />
-      <meta name="twitter:card" key="twitterCard" content="summary" />
-      <meta name="twitter:image" key="twitterImage" content={ogpImageUrl} />
+      <meta name="twitter:card" content="summary" />
+      <meta property="og:image" content={ogpImageUrl} />
     </Head>
     <div>
       <nav

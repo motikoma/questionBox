@@ -2,6 +2,7 @@ import firebase from "firebase/app";
 import { User } from "../../interfaces";
 import Layout from "../../components/Layout";
 import { useRouter } from "next/router";
+import Link from "next/link";
 import { FormEvent, useEffect, useState } from "react";
 
 type Query = {
@@ -90,6 +91,17 @@ const UserShow: React.FC = () => {
               )}
             </div>
           </form>
+          <div>
+            {user && (
+              <p>
+                <Link href="/users/me">
+                  <a className="btn btn-link">
+                    自分もみんなに質問してもらおう!
+                  </a>
+                </Link>
+              </p>
+            )}
+          </div>
         </div>
       </div>
     </Layout>

@@ -14,7 +14,7 @@ const IndexPage = () => {
         </Link>
       </p>
       <p>
-        <Link href={`/question/${user?.uid}`}>
+        <Link href={`/questions/${user?.uid}`}>
           <a>受け取った質問リストだよ</a>
         </Link>
       </p>

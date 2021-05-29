@@ -1,5 +1,8 @@
 import React from "react";
 import Head from "next/head";
+import Link from "next/link";
+
+const ogpImageUrl = `${process.env.NEXT_PUBLIC_WEB_URL}/images/card.png`;
 
 type LayoutProps = {
   title?: string;
@@ -19,6 +22,13 @@ const Layout: React.FC<LayoutProps> = ({
         content="質問と回答を行えるサービスです。"
       />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      <link
+        href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet"
+        crossOrigin="anonymous"
+      ></link>
+
+      {/* facebook OGPの設定 */}
       <meta
         property="og:title"
         key="ogTitle"
@@ -34,6 +44,11 @@ const Layout: React.FC<LayoutProps> = ({
         key="ogDescription"
         content="質問と回答を行えるサービスです。"
       />
+
+      {/* twitter OGPの設定 */}
+      <meta property="og:image" key="ogImage" content={ogpImageUrl} />
+      <meta name="twitter:card" key="twitterCard" content="summary" />
+      <meta name="twitter:image" key="twitterImage" content={ogpImageUrl} />
     </Head>
     <div>
       <nav
@@ -43,7 +58,7 @@ const Layout: React.FC<LayoutProps> = ({
         <div className="container">
           <div className="mr-auto">
             <a className="navbar-brand" href="#">
-              Navbar
+              My質問サービス
             </a>
           </div>
           <form className="d-flex">
@@ -55,6 +70,23 @@ const Layout: React.FC<LayoutProps> = ({
       </nav>
       <div className="container">{children}</div>
     </div>
+    <nav className="navbar fixed-bottom navbar-light bg-light">
+      <div className="container">
+        <div className="d-flex justify-content-between align-items-center w-100">
+          <i className="material-icons">menu</i>
+          <Link href="/questions/received">
+            <a>
+              <i className="material-icons">home</i>
+            </a>
+          </Link>
+          <Link href="/users/me">
+            <a>
+              <i className="material-icons">person</i>
+            </a>
+          </Link>
+        </div>
+      </div>
+    </nav>
   </div>
 );
 

@@ -69,8 +69,10 @@ export default function QuestionsShow() {
     setIsSending(true);
 
     // 回答データの登録&質問データのisRepliedをtrueに更新するを同時に実行したいためトランザクション処理を実装
+
+    const answerRef = firebase.firestore().collection("answers").doc();
     await firebase.firestore().runTransaction(async (t) => {
-      t.set(firebase.firestore().collection("answers").doc(), {
+      t.set(answerRef, {
         uid: user.uid,
         // ?を記載することでnullではなくundefindを返すことでエラーを防ぐ
         questionId: question?.id,
@@ -98,6 +100,7 @@ export default function QuestionsShow() {
     }
 
     if (answer) {
+      // TODO: metaタグの生成が先に始まっており、後からdescriptionが変更されてしまっている
       setDescription(getDescription(answer));
       setOgpImageUrl(
         `${process.env.NEXT_PUBLIC_WEB_URL}/api/answers/${answer.id}/ogp`

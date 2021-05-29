@@ -47,7 +47,7 @@ const AnswersShow = (props: Props) => {
 
             <div className="my-3 d-flex justify-content-center">
               <TwitterShareButton
-                url={`${process.env.NEXT_PUBLIC_WEB_URL}/answer/${props.answer.id}`}
+                url={`${process.env.NEXT_PUBLIC_WEB_URL}/answers/${props.answer.id}`}
                 text={props.answer.body}
               />
             </div>

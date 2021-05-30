@@ -3,6 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 
 const ogpImageUrl = `${process.env.NEXT_PUBLIC_WEB_URL}/images/card.png`;
+console.log(ogpImageUrl);
 
 type LayoutProps = {
   title?: string;
@@ -46,9 +47,8 @@ const Layout: React.FC<LayoutProps> = ({
       />
 
       {/* twitter OGPの設定 */}
-      <meta property="og:image" key="ogImage" content={ogpImageUrl} />
-      <meta name="twitter:card" key="twitterCard" content="summary" />
-      <meta name="twitter:image" key="twitterImage" content={ogpImageUrl} />
+      <meta name="twitter:card" content="summary" />
+      <meta property="og:image" content={ogpImageUrl} />
     </Head>
     <div>
       <nav
@@ -70,6 +70,24 @@ const Layout: React.FC<LayoutProps> = ({
       </nav>
       <div className="container">{children}</div>
     </div>
+    <footer className="text-center mt-5 py-5 bg-light">
+      <div className="pb-1 text-muted">
+        Created by{" "}
+        <a href="https://twitter.com/motikoma" className="link-info">
+          @motikoma
+        </a>
+      </div>
+      <div>
+        <Link href="/terms-of-service">
+          <a className="d-inline-block mx-1">利用規約</a>
+        </Link>
+      </div>
+      <div>
+        <Link href="/privacy-policy">
+          <a className="d-inline-block mx-1">プライバシーポリシー</a>
+        </Link>
+      </div>
+    </footer>
     <nav className="navbar fixed-bottom navbar-light bg-light">
       <div className="container">
         <div className="d-flex justify-content-between align-items-center w-100">
